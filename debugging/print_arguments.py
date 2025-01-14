@@ -1,8 +1,6 @@
-				#!/usr/bin/python3
+#!/usr/bin/python3
 import sys
 
-if len(sys.argv) > 1:
-    for arg in sys.argv[1:]:
-        print(arg)
-else:
-    print("Aucun argument fourni.")
+# Start from index 1 to avoid printing the script name (sys.argv[0])
+for arg in sys.argv[1:]:
+    print(arg)
