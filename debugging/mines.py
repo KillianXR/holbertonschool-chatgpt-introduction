@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import random
 import os
 
@@ -51,13 +50,8 @@ class Minesweeper:
                         self.reveal(nx, ny)
         return True
 
-    def check_win(self):
-        # Vérifier si toutes les cases non-minées ont été révélées
-        for y in range(self.height):
-            for x in range(self.width):
-                if (y * self.width + x) not in self.mines and not self.revealed[y][x]:
-                    return False
-        return True
+    def valid_coordinates(self, x, y):
+        return 0 <= x < self.width and 0 <= y < self.height
 
     def play(self):
         while True:
@@ -65,13 +59,12 @@ class Minesweeper:
             try:
                 x = int(input("Enter x coordinate: "))
                 y = int(input("Enter y coordinate: "))
+                if not self.valid_coordinates(x, y):
+                    print("Please enter valid coordinates within the bounds of the board.")
+                    continue
                 if not self.reveal(x, y):
                     self.print_board(reveal=True)
                     print("Game Over! You hit a mine.")
-                    break
-                if self.check_win():  # Vérifier si le joueur a gagné
-                    self.print_board(reveal=True)
-                    print("Congratulations! You've won the game.")
                     break
             except ValueError:
                 print("Invalid input. Please enter numbers only.")

@@ -1,6 +1,8 @@
-#!/usr/bin/python3
+				#!/usr/bin/python3
 import sys
 
-# Commencez la boucle à 1 pour ignorer le nom du script
-for i in range(1, len(sys.argv)):
-    print(sys.argv[i])
+if len(sys.argv) > 1:
+    for arg in sys.argv[1:]:
+        print(arg)
+else:
+    print("Aucun argument fourni.")

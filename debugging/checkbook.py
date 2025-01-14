@@ -3,11 +3,17 @@ class Checkbook:
         self.balance = 0.0
 
     def deposit(self, amount):
+        if amount <= 0:
+            print("Please enter a positive amount to deposit.")
+            return
         self.balance += amount
         print("Deposited ${:.2f}".format(amount))
         print("Current Balance: ${:.2f}".format(self.balance))
 
     def withdraw(self, amount):
+        if amount <= 0:
+            print("Please enter a positive amount to withdraw.")
+            return
         if amount > self.balance:
             print("Insufficient funds to complete the withdrawal.")
         else:
@@ -25,23 +31,17 @@ def main():
         if action.lower() == 'exit':
             break
         elif action.lower() == 'deposit':
-            # Error handling for non-numeric input
-            while True:
-                try:
-                    amount = float(input("Enter the amount to deposit: $"))
-                    cb.deposit(amount)
-                    break  # Exit the loop once valid input is received
-                except ValueError:
-                    print("Invalid input. Please enter a valid number for the deposit.")
+            try:
+                amount = float(input("Enter the amount to deposit: $"))
+                cb.deposit(amount)
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
         elif action.lower() == 'withdraw':
-            # Error handling for non-numeric input
-            while True:
-                try:
-                    amount = float(input("Enter the amount to withdraw: $"))
-                    cb.withdraw(amount)
-                    break  # Exit the loop once valid input is received
-                except ValueError:
-                    print("Invalid input. Please enter a valid number for the withdrawal.")
+            try:
+                amount = float(input("Enter the amount to withdraw: $"))
+                cb.withdraw(amount)
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
         elif action.lower() == 'balance':
             cb.get_balance()
         else:
