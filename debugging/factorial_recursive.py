@@ -2,20 +2,22 @@
 import sys
 
 def factorial(n):
-    if n < 0:
-        raise ValueError("Factorial is not defined for negative numbers")
+    """
+    Fonction qui calcule le factoriel d'un nombre donné de manière récursive.
+    
+    Paramètres:
+    n (int): Le nombre pour lequel le factoriel doit être calculé.
+    
+    Retours:
+    int: Le factoriel de n. Si n est 0, la fonction retourne 1.
+    """
     if n == 0:
         return 1
     else:
         return n * factorial(n-1)
 
-try:
-    number = int(sys.argv[1])
-    if number < 0:
-        raise ValueError("Please enter a non-negative integer")
-    result = factorial(number)
-    print(result)
-except ValueError as e:
-    print(f"Error: {e}")
-except IndexError:
-    print("Error: Please provide a number as a command line argument")
+# On récupère l'argument passé en ligne de commande et on le convertit en entier
+f = factorial(int(sys.argv[1]))
+
+# On affiche le résultat du calcul du factoriel
+print(f)
